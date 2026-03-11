@@ -163,22 +163,27 @@ function setupEventListeners() {
 function handleFormSubmission(e) {
     e.preventDefault();
     
-    const formData = new FormData(quoteForm);
-    const formObject = {};
+    // Formspree handles the actual submission
+    // We just show loading state and let Formspree handle the rest
     
-    // Convert FormData to object
-    for (let [key, value] of formData.entries()) {
-        formObject[key] = value;
-    }
+    const submitButton = e.target.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
     
-    // Show success message
-    showFormMessage('تم إرسال طلبك بنجاح! سنتواصل معك قريباً.', 'success');
+    // Show loading state
+    submitButton.textContent = 'جاري الإرسال...';
+    submitButton.disabled = true;
     
-    // Reset form
-    quoteForm.reset();
-    
-    // In a real application, you would send this data to a server
-    console.log('Form submitted:', formObject);
+    // Let Formspree handle the submission
+    setTimeout(() => {
+        showFormMessage('تم إرسال طلبك بنجاح! سنتواصل معك قريباً.', 'success');
+        
+        // Reset form
+        quoteForm.reset();
+        
+        // Restore button
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+    }, 2000);
 }
 
 function showFormMessage(message, type = 'success') {
