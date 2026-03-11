@@ -161,11 +161,7 @@ function setupEventListeners() {
 
 // Form Handling
 function handleFormSubmission(e) {
-    e.preventDefault();
-    
-    // Formspree handles the actual submission
-    // We just show loading state and let Formspree handle the rest
-    
+    // Don't prevent default - let Formspree handle the submission
     const submitButton = e.target.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
     
@@ -173,17 +169,8 @@ function handleFormSubmission(e) {
     submitButton.textContent = 'جاري الإرسال...';
     submitButton.disabled = true;
     
-    // Let Formspree handle the submission
-    setTimeout(() => {
-        showFormMessage('تم إرسال طلبك بنجاح! سنتواصل معك قريباً.', 'success');
-        
-        // Reset form
-        quoteForm.reset();
-        
-        // Restore button
-        submitButton.textContent = originalText;
-        submitButton.disabled = false;
-    }, 2000);
+    // Formspree will handle the actual submission and redirect
+    // The success message will be handled by Formspree's default behavior
 }
 
 function showFormMessage(message, type = 'success') {
