@@ -123,16 +123,18 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    text-align: center;
 }
 
 .hero-text {
     max-width: 600px;
+    margin: 0 auto;
 }
 
 .hero-logo {
     height: 120px;
     width: auto;
-    margin-bottom: 1rem;
+    margin: 0 auto 1rem auto;
     display: block;
 }
 
@@ -162,6 +164,7 @@ body {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* Buttons */
